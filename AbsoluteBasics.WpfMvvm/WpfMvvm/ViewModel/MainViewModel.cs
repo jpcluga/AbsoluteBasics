@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
+using WpfMvvm.Model;
 
 namespace WpfMvvm.ViewModel
 {
@@ -47,7 +48,10 @@ namespace WpfMvvm.ViewModel
             //Set the command to a concrete method or an anonymous method
             //will use an anonymous method for simplicity of the example.
             //Normally, you will call a method inside your relays.
-            SendContentCmd = new RelayCommand(() => Message = TxtContent);
+            SendContentCmd = new RelayCommand(() => {
+                var model = new ApplicationIdentityModel { ApplicationIdentityMessage = TxtContent };
+                Message = model.ApplicationIdentityMessage;
+            });
         }
     }
 }
