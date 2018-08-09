@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfMvvm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfMvvm"
+        mc:Ignorable="d"
+        Title="WPF &amp; MVVM - Absolute Basics" Height="200" Width="600"
+        ResizeMode="NoResize"        
+        DataContext="{Binding Main, Source={StaticResource Locator}}"> <!--
+                                                                           Bind the viewmodel here, remember the 'Key' in the App.xaml file for your ViewModelLocator resource
+                                                                           and the property name of your viewmodel in the ViewModelLocator.cs class file
+                                                                           Main     -> ViewModelLocator property
+                                                                           Locator  -> Resource Key in App.xaml
+                                                                        -->
+    <Grid>
+        <!--Define the grid rows for your layout-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        
+        <!--Define the grid columns for your layout-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <!--A label with the content binded to the viewmodel with properties defining its position and style for rendering-->
+        <Label Content="{Binding Message}" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+
+        <!--A textbox with the text binded to the viewmodel with properties defining its position and style for rendering-->
+        <TextBox Text="{Binding TxtContent}" FontSize="16" HorizontalAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Height="36" Width="500"/>
+
+        <!--A button with the event binded to the viewmodel via command with properties defining its position and style for rendering-->
+        <Button Command="{Binding SendContentCmd}" Content="Send Content" Grid.Column="1" Grid.Row="3" Height="36" Width="500"/>
+    </Grid>
+</Window>
